@@ -7,9 +7,9 @@ $statement = $PDO->prepare("SELECT * FROM details WHERE id=1");
 $statement->execute();
 $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 foreach ($result as $row) {
-	$resume = $row['resume'];
-	$email = $row['email'];
-	$phone_number = $row['phone_number'];
+    $resume = $row['resume'];
+    $email = $row['email'];
+    $phone_number = $row['phone_number'];
 }
 
 // Fetch About Section
@@ -17,8 +17,8 @@ $statement1 = $PDO->prepare("SELECT * FROM about_me WHERE id=1");
 $statement1->execute();
 $result1 = $statement1->fetchAll(PDO::FETCH_ASSOC);
 foreach ($result1 as $row) {
-	$aboutMe_image = $row['image'];
-	$aboutMe_desc = $row['description'];
+    $aboutMe_image = $row['image'];
+    $aboutMe_desc = $row['description'];
 }
 ?>
 
@@ -103,13 +103,12 @@ foreach ($result1 as $row) {
 
                     <div class="social_icons">
                         <?php
-						$statement = $PDO->prepare("SELECT * FROM social_links");
-						$statement->execute();
-						$result = $statement->fetchAll(PDO::FETCH_ASSOC);
-						foreach ($result as $link) :
-						?>
-                        <a href="<?= $link['social_url'] ?>" class="icon"><i
-                                class="<?= $link['social_icon'] ?>"></i></a>
+                        $statement = $PDO->prepare("SELECT * FROM social_links");
+                        $statement->execute();
+                        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+                        foreach ($result as $link) :
+                        ?>
+                            <a href="<?= $link['social_url'] ?>" class="icon"><i class="<?= $link['social_icon'] ?>"></i></a>
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -152,21 +151,21 @@ foreach ($result1 as $row) {
                 </div>
                 <div class="skill-bars">
                     <?php
-					$statement = $PDO->prepare("SELECT * FROM skills");
-					$statement->execute();
-					$result = $statement->fetchAll(PDO::FETCH_ASSOC);
-					foreach ($result as $skill) :
-					?>
-                    <div class="bar">
-                        <div class="info">
-                            <span><?= $skill['title'] ?></span>
-                        </div>
-                        <div class="progress-line <?= $skill['class'] ?>">
-                            <span style="content:<?= $skill['percentage'] ?>; width: <?= $skill['percentage'] ?> ;
+                    $statement = $PDO->prepare("SELECT * FROM skills");
+                    $statement->execute();
+                    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+                    foreach ($result as $skill) :
+                    ?>
+                        <div class="bar">
+                            <div class="info">
+                                <span><?= $skill['title'] ?></span>
+                            </div>
+                            <div class="progress-line <?= $skill['class'] ?>">
+                                <span style="content:<?= $skill['percentage'] ?>; width: <?= $skill['percentage'] ?> ;
                                 ">
-                            </span>
+                                </span>
+                            </div>
                         </div>
-                    </div>
                     <?php endforeach; ?>
                 </div>
             </section>
@@ -179,16 +178,16 @@ foreach ($result1 as $row) {
                 </div>
                 <div class="project-container">
                     <?php
-					$statement = $PDO->prepare("SELECT * FROM projects");
-					$statement->execute();
-					$result = $statement->fetchAll(PDO::FETCH_ASSOC);
-					foreach ($result as $project) :
-					?>
-                    <div class="project-box">
-                        <img src="assets/images/<?= $project['image'] ?>" alt="<?= $project['name'] ?>" />
-                        <h3><?= $project['name'] ?></h3>
-                        <label><?= $project['description'] ?></label>
-                    </div>
+                    $statement = $PDO->prepare("SELECT * FROM projects");
+                    $statement->execute();
+                    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+                    foreach ($result as $project) :
+                    ?>
+                        <div class="project-box">
+                            <img src="assets/images/<?= $project['image'] ?>" alt="<?= $project['name'] ?>" />
+                            <h3><?= $project['name'] ?></h3>
+                            <label><?= $project['description'] ?></label>
+                        </div>
                     <?php endforeach ?>
 
                 </div>
@@ -259,12 +258,12 @@ foreach ($result1 as $row) {
             </div>
             <div class="footer-social-icons">
                 <?php
-				$statement = $PDO->prepare("SELECT * FROM social_links");
-				$statement->execute();
-				$result = $statement->fetchAll(PDO::FETCH_ASSOC);
-				foreach ($result as $link) :
-				?>
-                <a href="<?= $link['social_url'] ?>" class="icon"><i class="<?= $link['social_icon'] ?>"></i></a>
+                $statement = $PDO->prepare("SELECT * FROM social_links");
+                $statement->execute();
+                $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($result as $link) :
+                ?>
+                    <a href="<?= $link['social_url'] ?>" class="icon"><i class="<?= $link['social_icon'] ?>"></i></a>
                 <?php endforeach; ?>
             </div>
             <div class="bottom-footer">
@@ -278,33 +277,33 @@ foreach ($result1 as $row) {
 
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
-    emailjs.init("dhUVTX_NmagnIxART");
+        emailjs.init("your_public_key");
     </script>
 
     <script>
-    function sendEmail() {
-        var name = document.getElementById('name').value;
-        var email = document.getElementById('email').value;
-        var message = document.getElementById('message').value;
+        function sendEmail() {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var message = document.getElementById('message').value;
 
-        var templateParams = {
-            name: name,
-            email: email,
-            message: message
-        };
+            var templateParams = {
+                name: name,
+                email: email,
+                message: message
+            };
 
-        emailjs.send("service_dra2uym", "template_qg1m3i9", templateParams)
-            .then(function(response) {
-                console.log("Email sent successfully:", response);
-                // Clear the form inputs
-                document.getElementById('name').value = '';
-                document.getElementById('email').value = '';
-                document.getElementById('message').value = '';
-            }, function(error) {
-                console.log("Email failed to send:", error);
+            emailjs.send("your_service_id", "your_template_id", templateParams)
+                .then(function(response) {
+                    console.log("Email sent successfully:", response);
+                    // Clear the form inputs
+                    document.getElementById('name').value = '';
+                    document.getElementById('email').value = '';
+                    document.getElementById('message').value = '';
+                }, function(error) {
+                    console.log("Email failed to send:", error);
 
-            });
-    }
+                });
+        }
     </script>
     <!-- ----- TYPING JS Link ----- -->
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
